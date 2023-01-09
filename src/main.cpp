@@ -10,29 +10,52 @@
 #include "vex.h"
 
 #include "../include/vexDevices.h"
+#include "../include/util.h"
 #include "../include/inputHandler.h"
+#include "../include/autonomousFunc.h"
+
+#include "../include/threeAuto.h"
+#include "../include/skillsAuto.h"
 
 using namespace vex;
 
+string autonomousRoutineString = "skills";
+
+thread autonomousThread;
+thread axisMovementThread;
+
 void pre_auton(void)
 {
-	
 }
 
 void autonomous(void)
 {
-	// ..........................................................................
-	// Insert autonomous user code here.
-	// ..........................................................................
+	if (autonomousRoutineString == "threeSide")
+	{
+		autonomousThread = thread(autoRoutine_threeSide);
+	}
+	if (autonomousRoutineString == "skills")
+	{
+		autonomousThread = thread(autoRoutine_skillsAuto);
+	}
+	else
+	{
+		// Else Do Nothing
+		while (true)
+		{
+			wait(50, msec);
+		}
+	}
+
+	autonomousThread.setPriority(10);
 }
 
 void usercontrol(void)
 {
-	while (1)
-	{
+	setupCallbacks();
 
-		wait(20, msec);
-	}
+	axisMovementThread = thread(checkAxis);
+	axisMovementThread.setPriority(10);
 }
 
 int main()

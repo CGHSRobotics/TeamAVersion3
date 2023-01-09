@@ -1,144 +1,45 @@
 #pragma once
 
 #include "vexDevices.h"
+#include "userMovement.h"
 
-class button
+void setupCallbacks()
 {
-public:
-    button(bool isToggle = false); // constructor
+    /*
+     *   on press callbacks
+     */
 
-    bool isPressed(); // get pressed variable
+    Controller.ButtonY.pressed(triggerEndgameAsync);
+    // Controller.ButtonX.pressed(press_x);
+    // Controller.ButtonA.pressed(press_a);
+    Controller.ButtonB.pressed(launchDisksAsync);
 
-    void onPress();   // on press function for callback
-    void onRelease(); // on release callback for callback
+    Controller.ButtonLeft.pressed(conveyorForwardAsync);
+    // Controller.ButtonUp.pressed(press_up);
+    Controller.ButtonRight.pressed(conveyorReverseAsync);
+    // Controller.ButtonDown.pressed(press_down);
 
-private:
-    bool isToggle;
-    bool pressed;
-    bool rawPressed;
-};
+    Controller.ButtonL1.pressed(intakeReverseAsync);
+    Controller.ButtonL2.pressed(intakeForwardAsync);
+    Controller.ButtonR1.pressed(rollerForwardAsync);
+    Controller.ButtonR2.pressed(rollerReverseAsync);
 
-class input
-{
-public:
-    input();
-    void setupCallbacks();
+    /*
+     *  on release callbacks
+     */
 
-    button y = button();
-    button x = button();
-    button a = button();
-    button b = button();
+    // Controller.ButtonY.released(release_y);
+    Controller.ButtonX.released(triggerEndgameAsync);
+    // Controller.ButtonA.released(release_a);
+    Controller.ButtonB.released(launchDisksAsync);
 
-    button left = button();
-    button up = button();
-    button right = button();
-    button down = button();
+    Controller.ButtonLeft.released(conveyorForwardAsync);
+    // Controller.ButtonUp.released(release_up);
+    Controller.ButtonRight.released(conveyorReverseAsync);
+    // Controller.ButtonDown.released(release_down);
 
-    button l1 = button();
-    button l2 = button();
-    button r1 = button();
-    button r2 = button();
-};
-
-input Input;
-
-// gloabl functions to bs through function callbacks
-void press_y()
-{
-    Input.y.onPress();
-}
-void press_x()
-{
-    Input.x.onPress();
-}
-void press_a()
-{
-    Input.a.onPress();
-}
-void press_b()
-{
-    Input.b.onPress();
-}
-void press_left()
-{
-    Input.left.onPress();
-}
-void press_up()
-{
-    Input.up.onPress();
-}
-void press_right()
-{
-    Input.right.onPress();
-}
-void press_down()
-{
-    Input.down.onPress();
-}
-void press_l1()
-{
-    Input.l1.onPress();
-}
-void press_l2()
-{
-    Input.l2.onPress();
-}
-void press_r1()
-{
-    Input.r1.onPress();
-}
-void press_r2()
-{
-    Input.r2.onPress();
-}
-
-// on release
-void release_y()
-{
-    Input.y.onRelease();
-    // turn on roller
-}
-void release_x()
-{
-    Input.x.onRelease();
-}
-void release_a()
-{
-    Input.a.onRelease();
-}
-void release_b()
-{
-    Input.b.onRelease();
-}
-void release_left()
-{
-    Input.left.onRelease();
-}
-void release_up()
-{
-    Input.up.onRelease();
-}
-void release_right()
-{
-    Input.right.onRelease();
-}
-void release_down()
-{
-    Input.down.onRelease();
-}
-void release_l1()
-{
-    Input.l1.onRelease();
-}
-void release_l2()
-{
-    Input.l2.onRelease();
-}
-void release_r1()
-{
-    Input.r1.onRelease();
-}
-void release_r2()
-{
-    Input.r2.onRelease();
+    Controller.ButtonL1.released(intakeReverseAsync);
+    Controller.ButtonL2.released(intakeForwardAsync);
+    Controller.ButtonR1.released(rollerForwardAsync);
+    Controller.ButtonR2.released(rollerReverseAsync);
 }
