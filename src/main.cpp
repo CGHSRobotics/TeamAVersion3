@@ -14,8 +14,8 @@
 #include "../include/inputHandler.h"
 #include "../include/autonomousFunc.h"
 
-#include "../include/threeAuto.h"
-#include "../include/skillsAuto.h"
+#include "../include/auto/threeAuto.h"
+#include "../include/auto/skillsAuto.h"
 
 using namespace vex;
 
@@ -55,7 +55,7 @@ void usercontrol(void)
 	setupCallbacks();
 
 	axisMovementThread = thread(checkAxis);
-	axisMovementThread.setPriority(10);
+	axisMovementThread.setPriority(20);
 }
 
 int main()

@@ -23,11 +23,13 @@ void spinMotor(motor motorToSpin, float velocity)
 // Prints Text to Screen at Position
 void printTextToScreen(string text, int row, int col)
 {
+    Brain.Screen.clearLine(row);
     Brain.Screen.setCursor(row, col);
     Brain.Screen.print(text.c_str());
 };
 void printTextToScreen(float text, int row, int col)
 {
+    Brain.Screen.clearLine(row);
     Brain.Screen.setCursor(row, col);
     Brain.Screen.print(text);
 };
