@@ -19,6 +19,11 @@ void spinMotor(motor motorToSpin, float velocity)
     motorToSpin.setVelocity(velocity, percent);
     motorToSpin.spin(fwd);
 };
+void spinMotor(motor_group motorToSpin, float velocity)
+{
+    motorToSpin.setVelocity(velocity, percent);
+    motorToSpin.spin(fwd);
+};
 
 // Prints Text to Screen at Position
 void printTextToScreen(string text, int row, int col)
