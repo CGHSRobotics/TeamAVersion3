@@ -15,9 +15,9 @@ controller Controller;
 competition Competition;
 
 motor motor_frontLeft = motor(PORT1, ratio18_1, true);
-motor motor_backLeft = motor(PORT2, ratio18_1, true);
+motor motor_backLeft = motor(PORT12, ratio18_1, true);
 motor motor_frontRight = motor(PORT3, ratio18_1, false);
-motor motor_backRight = motor(PORT4, ratio18_1, false);
+motor motor_backRight = motor(PORT14, ratio18_1, false);
 
 motor_group motorGroup_leftChassis = motor_group(motor_frontLeft, motor_backLeft);
 motor_group motorGroup_rightChassis = motor_group(motor_frontRight, motor_backRight);

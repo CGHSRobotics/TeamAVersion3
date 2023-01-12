@@ -88,7 +88,7 @@ void autoTurnXDegrees(float angle, float velocity)
 };
 
 // Spins roller for certain amount of time
-void autoSpinRollerTime(float time)
+void autoSpinRollerTime(float time, float velocity)
 {
     float timeCurr = 0;
 
