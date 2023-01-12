@@ -8,7 +8,7 @@
 
 void autoDriveDistance(float distance, float velocity, string distanceType);
 void autoDriveTime(float time, float velocity);
-void autoTurnXDegrees(float angle);
+void autoTurnXDegrees(float angle, float velocity);
 
 void autoSpinRollerTime(float time);
 
@@ -16,6 +16,7 @@ void autoSpinRollerTime(float time);
  *  Function Definitions
  */
 
+// Drives the Robot X distance at a certain speed
 void autoDriveDistance(float distance, float velocity, string distanceType)
 {
     if (distanceType == "tile")
@@ -50,6 +51,7 @@ void autoDriveDistance(float distance, float velocity, string distanceType)
     }
 };
 
+// Drives the Robot for a certain amount of time
 void autoDriveTime(float time, float velocity)
 {
     float currTime = 0;
@@ -79,10 +81,31 @@ void autoDriveTime(float time, float velocity)
     }
 };
 
-void autoTurnXDegrees(float angle){
+// Turns the robot a certain number of degrees at a certain speed
+void autoTurnXDegrees(float angle, float velocity)
+{
 
+    motorGroup_leftChassis.resetPosition();
+    motorGroup_rightChassis.resetPosition();
+
+    float totalEnc = 0; // degrees * EncPerDeg;
+
+    // note: this “deg” is from vex namespace
+    motorGroup_leftChassis.setVelocity(100.0, percent);
+    motorGroup_leftChassis.spinToPosition(totalEnc, deg, false);
+
+    motorGroup_rightChassis.setVelocity(-100.0, percent);
+    motorGroup_rightChassis.spinToPosition(-totalEnc, deg, false);
+
+    while (motorGroup_leftChassis.isSpinning() || motorGroup_rightChassis.isSpinning())
+    {
+        wait(50, msec);
+    }
+
+    return;
 };
 
+// Spins roller for certain amount of time
 void autoSpinRollerTime(float time)
 {
     float timeCurr = 0;

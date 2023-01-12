@@ -11,3 +11,20 @@
     Port 7 = Launcher Motor
     Port 8 = undefined
 
+## Button Mapping
+
+    L1      -   Intake Reverse
+    L2      -   Intake Forward (toggle)
+    R1      -   Roller Forward
+    R2      -   Roller Reverse
+
+    Up
+    Down
+    Left    -   Conveyor Forward
+    Right   -   Conveyor Reverse
+
+    Y       -   Trigger Endgame
+    X
+    A
+    B       -   Launch Disks
+    

@@ -19,7 +19,7 @@
 
 using namespace vex;
 
-string autonomousRoutineString = "skills";
+string autonomousRoutineString = "null";
 
 thread autonomousThread;
 thread axisMovementThread;
@@ -54,8 +54,7 @@ void usercontrol(void)
 {
 	setupCallbacks();
 
-	axisMovementThread = thread(checkAxis);
-	axisMovementThread.setPriority(20);
+	//axisMovementThread = thread(checkAxis);
 }
 
 int main()

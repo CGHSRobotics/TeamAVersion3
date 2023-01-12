@@ -25,7 +25,7 @@ motor_group motorGroup_rightChassis = motor_group(motor_frontRight, motor_backRi
 motor motor_intake = motor(PORT6, ratio18_1, false);
 motor motor_conveyor = motor(PORT5, ratio6_1, false);
 
-motor motor_launcher = motor(PORT7, ratio6_1, false);
+motor motor_launcher = motor(PORT7, ratio6_1, true);
 motor motor_roller = motor(PORT8, ratio36_1, false);
 
 gyro Gyroscope = gyro(Brain.ThreeWirePort.A);
