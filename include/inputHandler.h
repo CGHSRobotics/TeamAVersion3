@@ -15,11 +15,11 @@ void setupCallbacks()
     Controller.ButtonB.pressed(launchDisksAsync);
 
     Controller.ButtonLeft.pressed(conveyorForwardAsync);
-    // Controller.ButtonUp.pressed(press_up);
+    Controller.ButtonUp.pressed(intakeReverseAsync);
     Controller.ButtonRight.pressed(conveyorReverseAsync);
     // Controller.ButtonDown.pressed(press_down);
 
-    Controller.ButtonL1.pressed(intakeReverseAsync);
+    // Controller.ButtonL1.pressed();
     Controller.ButtonL2.pressed(intakeForwardAsync);
     Controller.ButtonR1.pressed(rollerForwardAsync);
     Controller.ButtonR2.pressed(rollerReverseAsync);
@@ -34,11 +34,11 @@ void setupCallbacks()
     Controller.ButtonB.released(launchDisksAsync);
 
     Controller.ButtonLeft.released(conveyorForwardAsync);
-    // Controller.ButtonUp.released(release_up);
+    Controller.ButtonUp.released(intakeReverseAsync);
     Controller.ButtonRight.released(conveyorReverseAsync);
     // Controller.ButtonDown.released(release_down);
 
-    Controller.ButtonL1.released(intakeReverseAsync);
+    // Controller.ButtonL1.released();
     Controller.ButtonL2.released(intakeForwardAsync);
     Controller.ButtonR1.released(rollerForwardAsync);
     Controller.ButtonR2.released(rollerReverseAsync);

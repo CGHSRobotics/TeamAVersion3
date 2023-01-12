@@ -13,12 +13,12 @@
 
 ## Button Mapping
 
-    L1      -   Intake Reverse
+    L1      -   
     L2      -   Intake Forward (toggle)
     R1      -   Roller Forward
     R2      -   Roller Reverse
 
-    Up
+    Up      -   Intake Reverse
     Down
     Left    -   Conveyor Forward
     Right   -   Conveyor Reverse

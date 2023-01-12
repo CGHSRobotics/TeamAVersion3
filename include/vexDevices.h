@@ -34,3 +34,8 @@ pneumatics pneumatics_Endgame = pneumatics(Brain.ThreeWirePort.B);
 const float motorToWheelGearRatio = 60 / 36;
 const float wheelDiameter = 3.25;
 const float wheelCircumference = wheelDiameter * PI;
+const float trackLength = 0;
+const float wheelBase = 0;
+
+const float turnCircleRadius = sqrt((trackLength * trackLength) + (wheelBase * wheelBase));
+const float turnCircleCircum = 2 * turnCircleRadius * PI;

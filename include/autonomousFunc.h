@@ -19,36 +19,24 @@ void autoSpinRollerTime(float time);
 // Drives the Robot X distance at a certain speed
 void autoDriveDistance(float distance, float velocity, string distanceType)
 {
-    if (distanceType == "tile")
-    {
-        distance *= 24;
-    }
+    motorGroup_leftChassis.resetPosition();
+    motorGroup_rightChassis.resetPosition();
 
-    float startRotationNumLeft = motor_frontLeft.position(rev);
-    float startRotationNumRight = motor_frontRight.position(rev);
+    float motorDegree = ((distance * 24) / wheelCircumference) / motorToWheelGearRatio;
 
+    // note: this “deg” is from vex namespace
     motorGroup_leftChassis.setVelocity(velocity, percent);
+    motorGroup_leftChassis.spinToPosition(motorDegree, deg, false);
+
     motorGroup_rightChassis.setVelocity(velocity, percent);
+    motorGroup_rightChassis.spinToPosition(motorDegree, deg, false);
 
-    motorGroup_leftChassis.spin(fwd);
-    motorGroup_rightChassis.spin(fwd);
-
-    while (true)
+    while (motorGroup_leftChassis.isSpinning() || motorGroup_rightChassis.isSpinning())
     {
-        float distanceTravelled = (motor_frontLeft.position(rev) - startRotationNumLeft) * motorToWheelGearRatio * wheelCircumference;
-        if (distanceTravelled >= distance)
-        {
-            motorGroup_leftChassis.setVelocity(0, percent);
-            motorGroup_rightChassis.setVelocity(0, percent);
-
-            motorGroup_leftChassis.spin(fwd);
-            motorGroup_rightChassis.spin(fwd);
-
-            return;
-        }
-
-        wait(10, msec);
+        wait(50, msec);
     }
+
+    return;
 };
 
 // Drives the Robot for a certain amount of time
@@ -56,11 +44,8 @@ void autoDriveTime(float time, float velocity)
 {
     float currTime = 0;
 
-    motorGroup_leftChassis.setVelocity(velocity, percent);
-    motorGroup_rightChassis.setVelocity(velocity, percent);
-
-    motorGroup_leftChassis.spin(fwd);
-    motorGroup_rightChassis.spin(fwd);
+    spinMotor(motorGroup_leftChassis, velocity);
+    spinMotor(motorGroup_rightChassis, velocity);
 
     while (true)
     {
@@ -68,11 +53,8 @@ void autoDriveTime(float time, float velocity)
 
         if (currTime >= time / 1000)
         {
-            motorGroup_leftChassis.setVelocity(0, percent);
-            motorGroup_rightChassis.setVelocity(0, percent);
-
-            motorGroup_leftChassis.spin(fwd);
-            motorGroup_rightChassis.spin(fwd);
+            spinMotor(motorGroup_leftChassis, 0);
+            spinMotor(motorGroup_rightChassis, 0);
 
             return;
         }
@@ -88,14 +70,14 @@ void autoTurnXDegrees(float angle, float velocity)
     motorGroup_leftChassis.resetPosition();
     motorGroup_rightChassis.resetPosition();
 
-    float totalEnc = 0; // degrees * EncPerDeg;
+    float motorDegree = (angle * (turnCircleCircum / 360)) / wheelDiameter / motorToWheelGearRatio; // degrees * EncPerDeg;
 
     // note: this “deg” is from vex namespace
-    motorGroup_leftChassis.setVelocity(100.0, percent);
-    motorGroup_leftChassis.spinToPosition(totalEnc, deg, false);
+    motorGroup_leftChassis.setVelocity(velocity, percent);
+    motorGroup_leftChassis.spinToPosition(motorDegree, deg, false);
 
-    motorGroup_rightChassis.setVelocity(-100.0, percent);
-    motorGroup_rightChassis.spinToPosition(-totalEnc, deg, false);
+    motorGroup_rightChassis.setVelocity(velocity, percent);
+    motorGroup_rightChassis.spinToPosition(-motorDegree, deg, false);
 
     while (motorGroup_leftChassis.isSpinning() || motorGroup_rightChassis.isSpinning())
     {
