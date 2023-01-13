@@ -26,6 +26,8 @@ void autoRoutine_skillsAuto()
 
     autoDriveDistance(5, 20);
 
+    autoEndgame();
+
     //  After Routine ends, do nothing
     while (true)
     {
