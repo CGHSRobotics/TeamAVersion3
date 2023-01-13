@@ -16,12 +16,14 @@ void autoLaunchDisks(float time, float speed);
 
 void autoEndgame();
 
+void autoIntake(bool enabled);
+
 /*
  *  Function Definitions
  */
 
 // Drives the Robot X distance at a certain speed
-void autoDriveDistance(float distance, float velocity, string distanceType = "tile")
+void autoDriveDistance(float distance, float velocity, string distanceType)
 {
     motorGroup_leftChassis.resetPosition();
     motorGroup_rightChassis.resetPosition();

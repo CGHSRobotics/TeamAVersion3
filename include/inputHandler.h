@@ -9,37 +9,25 @@ void setupCallbacks()
      *   on press callbacks
      */
 
-    Controller.ButtonY.pressed(triggerEndgameAsync);
-    // Controller.ButtonX.pressed(press_x);
-    Controller.ButtonA.pressed(rollerForwardAsync);
-    Controller.ButtonB.pressed(rollerReverseAsync);
-
-    Controller.ButtonLeft.pressed(conveyorForwardAsync);
-    // Controller.ButtonUp.pressed();
-    Controller.ButtonRight.pressed(conveyorReverseAsync);
-    // Controller.ButtonDown.pressed(press_down);
-
-    Controller.ButtonL1.pressed(intakeForwardAsync);
-    Controller.ButtonL2.pressed(intakeReverseAsync);
-    // Controller.ButtonR1.pressed();
-    Controller.ButtonR2.pressed(launchDisksAsync);
+    buttonLauncher.pressed(triggerEndgameAsync);
+    buttonRollerForward.pressed(rollerForwardAsync);
+    buttonRollerReverse.pressed(rollerReverseAsync);
+    buttonConveyorForward.pressed(conveyorForwardAsync);
+    buttonConveyorReverse.pressed(conveyorReverseAsync);
+    buttonIntakeForward.pressed(intakeForwardAsync);
+    buttonIntakeReverse.pressed(intakeReverseAsync);
+    buttonLauncher.pressed(launchDisksAsync);
 
     /*
      *  on release callbacks
      */
 
-    Controller.ButtonY.released(triggerEndgameAsync);
-    // Controller.ButtonX.released();
-    Controller.ButtonA.released(rollerForwardAsync);
-    Controller.ButtonB.released(rollerReverseAsync);
-
-    Controller.ButtonLeft.released(conveyorForwardAsync);
-    // Controller.ButtonUp.released();
-    Controller.ButtonRight.released(conveyorReverseAsync);
-    // Controller.ButtonDown.released(release_down);
-
-    Controller.ButtonL1.released(intakeForwardAsync);
-    Controller.ButtonL2.released(intakeReverseAsync);
-    // Controller.ButtonR1.released();
-    Controller.ButtonR2.released(launchDisksAsync);
+    buttonLauncher.released(triggerEndgameAsync);
+    buttonRollerForward.released(rollerForwardAsync);
+    buttonRollerReverse.released(rollerReverseAsync);
+    buttonConveyorForward.released(conveyorForwardAsync);
+    buttonConveyorReverse.released(conveyorReverseAsync);
+    buttonIntakeForward.released(intakeForwardAsync);
+    buttonIntakeReverse.released(intakeReverseAsync);
+    buttonLauncher.released(launchDisksAsync);
 }

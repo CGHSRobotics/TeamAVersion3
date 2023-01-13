@@ -56,74 +56,67 @@ void checkAxis()
     }
 }
 
-bool intakeToggle = false;
 void intakeForwardAsync()
 {
     // Toggle for Controller L2
-    if (Controller.ButtonL1.pressing())
+    if (buttonIntakeForward.pressing())
     {
         intakeToggle = !intakeToggle;
     }
 
     if (intakeToggle)
     {
-        motor_intake.setVelocity(100, percent);
-        motor_conveyor.setVelocity(75, percent);
+        spinMotor(motor_intake, intakeSpeed);
+        spinMotor(motor_conveyor, conveyorSpeed_intake);
     }
     else
     {
-        motor_intake.setVelocity(0, percent);
-        motor_conveyor.setVelocity(0, percent);
+        spinMotor(motor_intake, 0);
+        spinMotor(motor_conveyor, 0);
     }
-    motor_intake.spin(fwd);
-    motor_conveyor.spin(fwd);
 }
 
 void intakeReverseAsync()
 {
     intakeToggle = false;
-    if (Controller.ButtonL2.pressing())
+    if (buttonIntakeReverse.pressing())
     {
-        motor_intake.setVelocity(-100, percent);
-        motor_conveyor.setVelocity(-100, percent);
+        spinMotor(motor_intake, -intakeSpeed);
+        spinMotor(motor_conveyor, -conveyorSpeed);
     }
     else
     {
-        motor_intake.setVelocity(0, percent);
-        motor_conveyor.setVelocity(0, percent);
+        spinMotor(motor_intake, 0);
+        spinMotor(motor_conveyor, 0);
     }
-    motor_intake.spin(fwd);
-    motor_conveyor.spin(fwd);
 }
 
-float launcherSpeed = 100;
-bool launcherSpeedCheckEnabled = true;
 void launchDisksAsync()
 {
-    if (Controller.ButtonR2.pressing())
+    if (buttonLauncher.pressing())
     {
         spinMotor(motor_launcher, launcherSpeed);
         if (launcherSpeedCheckEnabled)
         {
             while (!(motor_launcher.velocity(percent) >= launcherSpeed * 0.8))
             {
-                if (!Controller.ButtonR2.pressing())
+                if (!buttonLauncher.pressing())
                 {
-                    return; 
+                    return;
                 }
 
                 wait(10, msec);
             }
-            if (!Controller.ButtonR2.pressing())
+            if (!buttonLauncher.pressing())
             {
                 motor_launcher.spin(fwd, 12 * 0, volt);
             }
         }
 
         motor_launcher.spin(fwd, 12 * (launcherSpeed / 100), volt);
-        spinMotor(motor_conveyor, -100);
-        spinMotor(motor_intake, 100);
-        spinMotor(motor_roller, -100);
+        spinMotor(motor_conveyor, -conveyorSpeed);
+        spinMotor(motor_intake, intakeSpeed);
+        spinMotor(motor_roller, -rollerSpeed);
     }
     else
     {
@@ -136,7 +129,7 @@ void launchDisksAsync()
 
 void triggerEndgameAsync()
 {
-    if (Controller.ButtonY.pressing())
+    if (buttonEndgame.pressing())
     {
         pneumatics_Endgame.open();
     }
@@ -148,9 +141,9 @@ void triggerEndgameAsync()
 
 void rollerForwardAsync()
 {
-    if (Controller.ButtonA.pressing())
+    if (buttonRollerForward.pressing())
     {
-        spinMotor(motor_roller, 20);
+        spinMotor(motor_roller, rollerSpeed);
     }
     else
     {
@@ -160,9 +153,9 @@ void rollerForwardAsync()
 
 void rollerReverseAsync()
 {
-    if (Controller.ButtonB.pressing())
+    if (buttonRollerReverse.pressing())
     {
-        spinMotor(motor_roller, -20);
+        spinMotor(motor_roller, -rollerSpeed);
     }
     else
     {
@@ -172,26 +165,24 @@ void rollerReverseAsync()
 
 void conveyorForwardAsync()
 {
-    if (Controller.ButtonLeft.pressing())
+    if (buttonConveyorForward.pressing())
     {
-        motor_conveyor.setVelocity(100, percent);
+        spinMotor(motor_conveyor, conveyorSpeed);
     }
     else
     {
-        motor_conveyor.setVelocity(0, percent);
+        spinMotor(motor_conveyor, 0);
     }
-    motor_conveyor.spin(fwd);
 }
 
 void conveyorReverseAsync()
 {
-    if (Controller.ButtonRight.pressing())
+    if (buttonConveyorReverse.pressing())
     {
-        motor_conveyor.setVelocity(-100, percent);
+        spinMotor(motor_conveyor, -conveyorSpeed);
     }
     else
     {
-        motor_conveyor.setVelocity(0, percent);
+        spinMotor(motor_conveyor, 0);
     }
-    motor_conveyor.spin(fwd);
 }

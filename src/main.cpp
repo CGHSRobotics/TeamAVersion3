@@ -21,7 +21,7 @@
 
 using namespace vex;
 
-string autonomousRoutineString = "null";
+string autonomousRoutineString = "test";
 
 thread autonomousThread;
 thread axisMovementThread;
