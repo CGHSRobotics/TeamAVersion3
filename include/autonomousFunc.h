@@ -98,7 +98,7 @@ void autoSpinRollerTime(float time, float velocity)
 {
     float timeCurr = 0;
 
-    spinMotor(motor_roller, 50);
+    spinMotor(motor_roller, velocity);
 
     while (timeCurr < time)
     {
@@ -117,18 +117,13 @@ void autoLaunchDisks(float time, float speed)
     spinMotor(motor_launcher, speed);
     while (!(motor_launcher.velocity(percent) >= launcherSpeed * 0.8))
     {
-        if (!Controller.ButtonR2.pressing())
-        {
-            return;
-        }
-
         wait(10, msec);
     }
 
     motor_launcher.spin(fwd, 12 * (speed / 100), volt);
-    spinMotor(motor_conveyor, -100);
-    spinMotor(motor_intake, 100);
-    spinMotor(motor_roller, -100);
+    spinMotor(motor_conveyor, -conveyorSpeed);
+    spinMotor(motor_intake, intakeSpeed);
+    spinMotor(motor_roller, -rollerSpeed_launcher);
 
     while (timeCurr < time)
     {
@@ -145,8 +140,7 @@ void autoLaunchDisks(float time, float speed)
 // Auto Endgame
 void autoEndgame()
 {
-
-    float time = 1;
+    float time = autoEndgameEnableTime;
     float timeCurr = 0;
 
     pneumatics_Endgame.open();

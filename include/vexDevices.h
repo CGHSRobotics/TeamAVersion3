@@ -51,6 +51,9 @@ const float launcherSpeed = 100;
 const float rollerSpeed = 20;
 const float rollerSpeed_launcher = 75;
 
+// Endgame
+const float autoEndgameEnableTime = 1;
+
 /*
  *  Robot Dimensions
  */
