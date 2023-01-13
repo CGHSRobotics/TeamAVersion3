@@ -1,5 +1,11 @@
 # TeamAVersion3
 
+## Motor Gear Ratios
+
+    Blue    -   6:1
+    Green   -   18:1
+    Red     -   36:1
+
 ## Motor Setup
 
     Port 1 = Front Left Drive
@@ -9,22 +15,22 @@
     Port 5 = Conveyor Motor
     Port 6 = Intake Motor
     Port 7 = Launcher Motor
-    Port 8 = undefined
+    Port 8 = Roller Motor
 
 ## Button Mapping
 
-    L1      -   
-    L2      -   Intake Forward (toggle)
-    R1      -   Roller Forward
-    R2      -   Roller Reverse
-
-    Up      -   Intake Reverse
-    Down
-    Left    -   Conveyor Forward
-    Right   -   Conveyor Reverse
-
     Y       -   Trigger Endgame
     X
-    A
-    B       -   Launch Disks
+    A       -   Roller Forward
+    B       -   Roller Reverse
+
+    Left    -   Conveyor Forward
+    Up      -   
+    Right   -   Conveyor Reverse
+    Down    -
+
+    L1      -   Intake Forward (toggle)
+    L2      -   Intake Reverse
+    R1      -   
+    R2      -   Launch Disks
     

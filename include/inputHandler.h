@@ -11,35 +11,35 @@ void setupCallbacks()
 
     Controller.ButtonY.pressed(triggerEndgameAsync);
     // Controller.ButtonX.pressed(press_x);
-    // Controller.ButtonA.pressed(press_a);
-    Controller.ButtonB.pressed(launchDisksAsync);
+    Controller.ButtonA.pressed(rollerForwardAsync);
+    Controller.ButtonB.pressed(rollerReverseAsync);
 
     Controller.ButtonLeft.pressed(conveyorForwardAsync);
-    Controller.ButtonUp.pressed(intakeReverseAsync);
+    // Controller.ButtonUp.pressed();
     Controller.ButtonRight.pressed(conveyorReverseAsync);
     // Controller.ButtonDown.pressed(press_down);
 
-    // Controller.ButtonL1.pressed();
-    Controller.ButtonL2.pressed(intakeForwardAsync);
-    Controller.ButtonR1.pressed(rollerForwardAsync);
-    Controller.ButtonR2.pressed(rollerReverseAsync);
+    Controller.ButtonL1.pressed(intakeForwardAsync);
+    Controller.ButtonL2.pressed(intakeReverseAsync);
+    // Controller.ButtonR1.pressed();
+    Controller.ButtonR2.pressed(launchDisksAsync);
 
     /*
      *  on release callbacks
      */
 
-    // Controller.ButtonY.released(release_y);
-    Controller.ButtonX.released(triggerEndgameAsync);
-    // Controller.ButtonA.released(release_a);
-    Controller.ButtonB.released(launchDisksAsync);
+    Controller.ButtonY.released(triggerEndgameAsync);
+    // Controller.ButtonX.released();
+    Controller.ButtonA.released(rollerForwardAsync);
+    Controller.ButtonB.released(rollerReverseAsync);
 
     Controller.ButtonLeft.released(conveyorForwardAsync);
-    Controller.ButtonUp.released(intakeReverseAsync);
+    // Controller.ButtonUp.released();
     Controller.ButtonRight.released(conveyorReverseAsync);
     // Controller.ButtonDown.released(release_down);
 
-    // Controller.ButtonL1.released();
-    Controller.ButtonL2.released(intakeForwardAsync);
-    Controller.ButtonR1.released(rollerForwardAsync);
-    Controller.ButtonR2.released(rollerReverseAsync);
+    Controller.ButtonL1.released(intakeForwardAsync);
+    Controller.ButtonL2.released(intakeReverseAsync);
+    // Controller.ButtonR1.released();
+    Controller.ButtonR2.released(launchDisksAsync);
 }

@@ -8,6 +8,12 @@ void autoRoutine_threeSide()
 
     autoSpinRollerTime(1, 20);
 
+    autoDriveDistance(0.1, 50, "tile");
+
+    autoTurnXDegrees(90, 50);
+
+    autoLaunchDisks(3, 100);
+
     //  After Routine ends, do nothing
     while (true)
     {

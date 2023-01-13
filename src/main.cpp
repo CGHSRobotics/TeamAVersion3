@@ -15,7 +15,9 @@
 #include "../include/autonomousFunc.h"
 
 #include "../include/auto/threeAuto.h"
+#include "../include/auto/twoAuto.h"
 #include "../include/auto/skillsAuto.h"
+#include "../include/auto/testAuto.h"
 
 using namespace vex;
 
@@ -34,9 +36,17 @@ void autonomous(void)
 	{
 		autonomousThread = thread(autoRoutine_threeSide);
 	}
-	if (autonomousRoutineString == "skills")
+	else if (autonomousRoutineString == "twoSide")
+	{
+		autonomousThread = thread(autoRoutine_twoSide);
+	}
+	else if (autonomousRoutineString == "skills")
 	{
 		autonomousThread = thread(autoRoutine_skillsAuto);
+	}
+	else if (autonomousRoutineString == "test")
+	{
+		autonomousThread = thread(autoRoutine_testAuto);
 	}
 	else
 	{
@@ -54,7 +64,7 @@ void usercontrol(void)
 {
 	setupCallbacks();
 
-	//axisMovementThread = thread(checkAxis);
+	axisMovementThread = thread(checkAxis);
 }
 
 int main()

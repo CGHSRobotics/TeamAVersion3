@@ -12,6 +12,8 @@ void autoTurnXDegrees(float angle, float velocity);
 
 void autoSpinRollerTime(float time);
 
+void autoLaunchDisks(float time, float speed);
+
 /*
  *  Function Definitions
  */
@@ -100,5 +102,38 @@ void autoSpinRollerTime(float time, float velocity)
         wait(10, msec);
     }
 
+    spinMotor(motor_roller, 0);
+}
+
+// Launches disks for a certain amount of time at a certain speed
+void autoLaunchDisks(float time, float speed)
+{
+    float timeCurr = 0;
+
+    spinMotor(motor_launcher, speed);
+    while (!(motor_launcher.velocity(percent) >= launcherSpeed * 0.8))
+    {
+        if (!Controller.ButtonR2.pressing())
+        {
+            return;
+        }
+
+        wait(10, msec);
+    }
+
+    motor_launcher.spin(fwd, 12 * (speed / 100), volt);
+    spinMotor(motor_conveyor, -100);
+    spinMotor(motor_intake, 100);
+    spinMotor(motor_roller, -100);
+
+    while (timeCurr < time)
+    {
+        timeCurr += 10;
+        wait(10, msec);
+    }
+
+    motor_launcher.spin(fwd, 12 * 0, volt);
+    spinMotor(motor_conveyor, 0);
+    spinMotor(motor_intake, 0);
     spinMotor(motor_roller, 0);
 }

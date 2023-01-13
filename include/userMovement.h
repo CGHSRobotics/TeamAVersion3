@@ -60,7 +60,7 @@ bool intakeToggle = false;
 void intakeForwardAsync()
 {
     // Toggle for Controller L2
-    if (Controller.ButtonL2.pressing())
+    if (Controller.ButtonL1.pressing())
     {
         intakeToggle = !intakeToggle;
     }
@@ -68,7 +68,7 @@ void intakeForwardAsync()
     if (intakeToggle)
     {
         motor_intake.setVelocity(100, percent);
-        motor_conveyor.setVelocity(100, percent);
+        motor_conveyor.setVelocity(75, percent);
     }
     else
     {
@@ -82,7 +82,7 @@ void intakeForwardAsync()
 void intakeReverseAsync()
 {
     intakeToggle = false;
-    if (Controller.ButtonL1.pressing())
+    if (Controller.ButtonL2.pressing())
     {
         motor_intake.setVelocity(-100, percent);
         motor_conveyor.setVelocity(-100, percent);
@@ -96,19 +96,34 @@ void intakeReverseAsync()
     motor_conveyor.spin(fwd);
 }
 
-float launcherSpeed = 1;
-bool launcherSpeedCheckEnabled = false;
+float launcherSpeed = 100;
+bool launcherSpeedCheckEnabled = true;
 void launchDisksAsync()
 {
-    if (Controller.ButtonB.pressing())
+    if (Controller.ButtonR2.pressing())
     {
-        motor_launcher.spin(fwd, 12 * launcherSpeed, volt);
-        if (!launcherSpeedCheckEnabled || motor_launcher.velocity(rpm) >= (launcherSpeed * 0.8) * 600)
+        spinMotor(motor_launcher, launcherSpeed);
+        if (launcherSpeedCheckEnabled)
         {
-            spinMotor(motor_conveyor, -100);
-            spinMotor(motor_intake, 100);
-            spinMotor(motor_roller, -100);
+            while (!(motor_launcher.velocity(percent) >= launcherSpeed * 0.8))
+            {
+                if (!Controller.ButtonR2.pressing())
+                {
+                    return; 
+                }
+
+                wait(10, msec);
+            }
+            if (!Controller.ButtonR2.pressing())
+            {
+                motor_launcher.spin(fwd, 12 * 0, volt);
+            }
         }
+
+        motor_launcher.spin(fwd, 12 * (launcherSpeed / 100), volt);
+        spinMotor(motor_conveyor, -100);
+        spinMotor(motor_intake, 100);
+        spinMotor(motor_roller, -100);
     }
     else
     {
@@ -121,7 +136,7 @@ void launchDisksAsync()
 
 void triggerEndgameAsync()
 {
-    if (Controller.ButtonX.pressing())
+    if (Controller.ButtonY.pressing())
     {
         pneumatics_Endgame.open();
     }
@@ -133,28 +148,26 @@ void triggerEndgameAsync()
 
 void rollerForwardAsync()
 {
-    if (Controller.ButtonR1.pressing())
+    if (Controller.ButtonA.pressing())
     {
-        motor_roller.setVelocity(100, percent);
+        spinMotor(motor_roller, 20);
     }
     else
     {
-        motor_roller.setVelocity(0, percent);
+        spinMotor(motor_roller, 0);
     }
-    motor_roller.spin(fwd);
 }
 
 void rollerReverseAsync()
 {
-    if (Controller.ButtonR2.pressing())
+    if (Controller.ButtonB.pressing())
     {
-        motor_roller.setVelocity(-100, percent);
+        spinMotor(motor_roller, -20);
     }
     else
     {
-        motor_roller.setVelocity(0, percent);
+        spinMotor(motor_roller, 0);
     }
-    motor_roller.spin(fwd);
 }
 
 void conveyorForwardAsync()
