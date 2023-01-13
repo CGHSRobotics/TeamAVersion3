@@ -8,7 +8,7 @@
 
 ## Motor Setup
 
-    Port 1 = Front Left Drive
+    Port 11 = Front Left Drive
     Port 12 = Back Left
     Port 3 = Front Right
     Port 14 = Back Right

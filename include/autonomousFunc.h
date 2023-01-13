@@ -6,7 +6,7 @@
  *  Function Declarations
  */
 
-void autoDriveDistance(float distance, float velocity, string distanceType);
+void autoDriveDistance(float distance, float velocity, string distanceType = "tile");
 void autoDriveTime(float time, float velocity);
 void autoTurnXDegrees(float angle, float velocity);
 
@@ -14,12 +14,14 @@ void autoSpinRollerTime(float time);
 
 void autoLaunchDisks(float time, float speed);
 
+void autoEndgame();
+
 /*
  *  Function Definitions
  */
 
 // Drives the Robot X distance at a certain speed
-void autoDriveDistance(float distance, float velocity, string distanceType)
+void autoDriveDistance(float distance, float velocity, string distanceType = "tile")
 {
     motorGroup_leftChassis.resetPosition();
     motorGroup_rightChassis.resetPosition();
@@ -136,4 +138,22 @@ void autoLaunchDisks(float time, float speed)
     spinMotor(motor_conveyor, 0);
     spinMotor(motor_intake, 0);
     spinMotor(motor_roller, 0);
+}
+
+// Auto Endgame
+void autoEndgame()
+{
+
+    float time = 1;
+    float timeCurr = 0;
+
+    pneumatics_Endgame.open();
+
+    while (timeCurr < time)
+    {
+        timeCurr += 10;
+        wait(10, msec);
+    }
+
+    pneumatics_Endgame.close();
 }

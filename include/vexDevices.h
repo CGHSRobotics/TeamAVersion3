@@ -14,7 +14,7 @@ brain Brain;
 controller Controller;
 competition Competition;
 
-motor motor_frontLeft = motor(PORT1, ratio18_1, true);
+motor motor_frontLeft = motor(PORT11, ratio18_1, true);
 motor motor_backLeft = motor(PORT12, ratio18_1, true);
 motor motor_frontRight = motor(PORT3, ratio18_1, false);
 motor motor_backRight = motor(PORT14, ratio18_1, false);
