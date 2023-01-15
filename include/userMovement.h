@@ -19,6 +19,8 @@ void rollerReverseAsync();
 void conveyorForwardAsync();
 void conveyorReverseAsync();
 
+void launcherRollerReverse(); 
+
 /*
  * Function Definitions
  */
@@ -114,9 +116,9 @@ void launchDisksAsync()
         }
 
         motor_launcher.spin(fwd, 12 * (launcherSpeed / 100), volt);
-        spinMotor(motor_conveyor, -conveyorSpeed);
+        spinMotor(motor_conveyor, -conveyorSpeed_launcher);
         spinMotor(motor_intake, intakeSpeed);
-        spinMotor(motor_roller, -rollerSpeed);
+        spinMotor(motor_roller, -rollerSpeed_launcher);
     }
     else
     {
@@ -131,11 +133,11 @@ void triggerEndgameAsync()
 {
     if (buttonEndgame.pressing())
     {
-        pneumatics_Endgame.open();
+        pneumatics_Endgame.set(true);
     }
     else
     {
-        pneumatics_Endgame.close();
+        pneumatics_Endgame.set(false);
     }
 }
 
@@ -184,5 +186,21 @@ void conveyorReverseAsync()
     else
     {
         spinMotor(motor_conveyor, 0);
+    }
+}
+
+void launcherRollerReverse()
+{
+    if (buttonLauncherRollerReverse.pressing())
+    {
+        spinMotor(motor_conveyor, conveyorSpeed);
+        spinMotor(motor_intake, -intakeSpeed);
+        spinMotor(motor_roller, rollerSpeed_launcher);
+    }
+    else
+    {
+        spinMotor(motor_conveyor, 0);
+        spinMotor(motor_intake, 0);
+        spinMotor(motor_roller, 0);
     }
 }

@@ -4,15 +4,15 @@
 
 void autoRoutine_threeSide()
 {
-    autoDriveDistance(-0.1, 50, "tile");
+    autoDriveDistance(-0.1, 10);
 
-    autoSpinRollerTime(1, 20);
+    autoSpinRollerTime(0.5, rollerSpeed_auto);
 
-    autoDriveDistance(0.1, 50, "tile");
+    autoDriveDistance(0.1, 10);
 
-    autoTurnXDegrees(90, 50);
+    autoTurnXDegrees(70, 10);
 
-    autoLaunchDisks(3, 100);
+    autoLaunchDisks(5, 60);
 
     //  After Routine ends, do nothing
     while (true)

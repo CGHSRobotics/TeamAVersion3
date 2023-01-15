@@ -21,7 +21,7 @@
 
 using namespace vex;
 
-string autonomousRoutineString = "test";
+string autonomousRoutineString = "three";
 
 thread autonomousThread;
 thread axisMovementThread;
@@ -32,11 +32,11 @@ void pre_auton(void)
 
 void autonomous(void)
 {
-	if (autonomousRoutineString == "threeSide")
+	if (autonomousRoutineString == "three")
 	{
 		autonomousThread = thread(autoRoutine_threeSide);
 	}
-	else if (autonomousRoutineString == "twoSide")
+	else if (autonomousRoutineString == "two")
 	{
 		autonomousThread = thread(autoRoutine_twoSide);
 	}

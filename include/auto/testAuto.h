@@ -5,13 +5,13 @@
 void autoRoutine_testAuto()
 {
 
-    autoDriveDistance(1, 50);
+    //autoDriveDistance(1, 25);
 
-    autoDriveDistance(1, 100);
+    autoTurnXDegrees(90, 10);
 
-    autoDriveDistance(-1, 50);
+    //autoDriveDistance(-1, 25);
 
-    autoTurnXDegrees(360, 20);
+    autoLaunchDisks(3, 100);
 
     //  After Routine ends, do nothing
     while (true)

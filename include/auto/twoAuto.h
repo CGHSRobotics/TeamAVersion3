@@ -4,8 +4,9 @@
 
 void autoRoutine_twoSide()
 {
+    autoLaunchDisks(5, 50);
 
-    autoLaunchDisks(3, 100);
+    /*autoLaunchDisks(3, 100);
 
     autoDriveDistance(1, 10, "tile");
 
@@ -15,7 +16,7 @@ void autoRoutine_twoSide()
 
     autoSpinRollerTime(1, 20);
 
-    autoDriveDistance(0.1, 20, "tile");
+    autoDriveDistance(0.1, 20, "tile");*/
 
     //  After Routine ends, do nothing
     while (true)

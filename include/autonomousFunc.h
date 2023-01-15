@@ -28,7 +28,7 @@ void autoDriveDistance(float distance, float velocity, string distanceType)
     motorGroup_leftChassis.resetPosition();
     motorGroup_rightChassis.resetPosition();
 
-    float motorDegree = ((distance * 24) / wheelCircumference) / motorToWheelGearRatio;
+    float motorDegree = (((distance * 24.0) / wheelCircumference) * 360.0) / motorToWheelGearRatio;
 
     // note: this “deg” is from vex namespace
     motorGroup_leftChassis.setVelocity(velocity, percent);
@@ -57,7 +57,7 @@ void autoDriveTime(float time, float velocity)
     {
         currTime += 20;
 
-        if (currTime >= time / 1000)
+        if (currTime >= time / 1000.0)
         {
             spinMotor(motorGroup_leftChassis, 0);
             spinMotor(motorGroup_rightChassis, 0);
@@ -76,7 +76,8 @@ void autoTurnXDegrees(float angle, float velocity)
     motorGroup_leftChassis.resetPosition();
     motorGroup_rightChassis.resetPosition();
 
-    float motorDegree = (angle * (turnCircleCircum / 360)) / wheelDiameter / motorToWheelGearRatio; // degrees * EncPerDeg;
+    float distance = (angle) * (turnCircleCircum / 360.0);
+    float motorDegree = ((distance / wheelCircumference) * 360.0) / motorToWheelGearRatio;
 
     // note: this “deg” is from vex namespace
     motorGroup_leftChassis.setVelocity(velocity, percent);
@@ -100,9 +101,9 @@ void autoSpinRollerTime(float time, float velocity)
 
     spinMotor(motor_roller, velocity);
 
-    while (timeCurr < time)
+    while (timeCurr / 1000.0 < time)
     {
-        timeCurr += 10;
+        timeCurr += 10.0;
         wait(10, msec);
     }
 
@@ -115,23 +116,23 @@ void autoLaunchDisks(float time, float speed)
     float timeCurr = 0;
 
     spinMotor(motor_launcher, speed);
-    while (!(motor_launcher.velocity(percent) >= launcherSpeed * 0.8))
+    while (!(motor_launcher.velocity(percent) >= speed - 20))
     {
         wait(10, msec);
     }
 
-    motor_launcher.spin(fwd, 12 * (speed / 100), volt);
-    spinMotor(motor_conveyor, -conveyorSpeed);
+    motor_launcher.spin(fwd, 12.0 * (speed / 100.0), volt);
+    spinMotor(motor_conveyor, -conveyorSpeed_launcher);
     spinMotor(motor_intake, intakeSpeed);
     spinMotor(motor_roller, -rollerSpeed_launcher);
 
-    while (timeCurr < time)
+    while (timeCurr / 1000.0 < time)
     {
-        timeCurr += 10;
+        timeCurr += 10.0;
         wait(10, msec);
     }
 
-    motor_launcher.spin(fwd, 12 * 0, volt);
+    motor_launcher.spin(fwd, 12.0 * 0, volt);
     spinMotor(motor_conveyor, 0);
     spinMotor(motor_intake, 0);
     spinMotor(motor_roller, 0);
@@ -143,13 +144,13 @@ void autoEndgame()
     float time = autoEndgameEnableTime;
     float timeCurr = 0;
 
-    pneumatics_Endgame.open();
+    pneumatics_Endgame.set(true);
 
-    while (timeCurr < time)
+    while (timeCurr / 1000.0 < time)
     {
-        timeCurr += 10;
+        timeCurr += 10.0;
         wait(10, msec);
     }
 
-    pneumatics_Endgame.close();
+    pneumatics_Endgame.set(false);
 }

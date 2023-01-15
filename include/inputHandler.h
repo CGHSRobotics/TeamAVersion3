@@ -9,7 +9,7 @@ void setupCallbacks()
      *   on press callbacks
      */
 
-    buttonLauncher.pressed(triggerEndgameAsync);
+    buttonEndgame.pressed(triggerEndgameAsync);
     buttonRollerForward.pressed(rollerForwardAsync);
     buttonRollerReverse.pressed(rollerReverseAsync);
     buttonConveyorForward.pressed(conveyorForwardAsync);
@@ -17,12 +17,13 @@ void setupCallbacks()
     buttonIntakeForward.pressed(intakeForwardAsync);
     buttonIntakeReverse.pressed(intakeReverseAsync);
     buttonLauncher.pressed(launchDisksAsync);
+    buttonLauncherRollerReverse.pressed(launcherRollerReverse);
 
     /*
      *  on release callbacks
      */
 
-    buttonLauncher.released(triggerEndgameAsync);
+    buttonEndgame.released(triggerEndgameAsync);
     buttonRollerForward.released(rollerForwardAsync);
     buttonRollerReverse.released(rollerReverseAsync);
     buttonConveyorForward.released(conveyorForwardAsync);
@@ -30,4 +31,5 @@ void setupCallbacks()
     buttonIntakeForward.released(intakeForwardAsync);
     buttonIntakeReverse.released(intakeReverseAsync);
     buttonLauncher.released(launchDisksAsync);
+    buttonLauncherRollerReverse.released(launcherRollerReverse);
 }
